@@ -357,7 +357,8 @@
     address: '서울특별시 구로구 새말로 97 신도림테크노마트 7층',
     durationMin: 120,
     bgmUrl: 'music.mp3?v=3',          // 예: 'music.mp3' (GitHub에 함께 올릴 음악 파일)
-    kakaoJsKey: '',      // 카카오 개발자 JavaScript 키 (GitHub Pages 주소 등록 후)
+    kakaoJsKey: '01ecd3f7cb5ccf88ea6592894f0e12a7',      // 카톡 공유용: 청첩장 앱의 JavaScript 키
+    kakaoMapKey: '1dd00f168503878851e57e5c7de85a58',     // 지도용: 카카오맵이 켜진 앱(분양가추정기)의 JavaScript 키
     shareImage: 'https://gogo1595959.github.io/wedding/thumbnail.jpg',      // 카톡 공유 썸네일 전체 주소 (예: https://아이디.github.io/저장소/thumbnail.jpg)
     accounts: {
       groom: [
@@ -436,9 +437,10 @@
 
   // 카카오맵 (카카오 키 + 카카오맵 사용 설정 + GitHub Pages 주소 등록 시 표시)
   (function(){
-    if(!CONFIG.kakaoJsKey) return;
+    const mapKey = CONFIG.kakaoMapKey || CONFIG.kakaoJsKey;
+    if(!mapKey) return;
     const s=document.createElement('script');
-    s.src='https://dapi.kakao.com/v2/maps/sdk.js?appkey='+CONFIG.kakaoJsKey+'&autoload=false&libraries=services';
+    s.src='https://dapi.kakao.com/v2/maps/sdk.js?appkey='+mapKey+'&autoload=false&libraries=services';
     s.onload=()=>kakao.maps.load(()=>{
       const el=document.getElementById('map');
       new kakao.maps.services.Geocoder().addressSearch('서울 구로구 새말로 97',(res,status)=>{
