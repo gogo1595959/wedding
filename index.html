@@ -23,7 +23,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:#efe9e1;color:var(--ink);font-family:'Noto Sans KR',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+  body{word-break:keep-all;background:#efe9e1;color:var(--ink);font-family:'Noto Sans KR',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
   .wrap{max-width:430px;margin:0 auto;background:var(--bg);min-height:100vh;overflow:hidden;position:relative}
   section{padding:72px 28px;text-align:center;position:relative}
   .serif{font-family:'Nanum Myeongjo',serif}
@@ -116,6 +116,39 @@
   .guide p{font-size:14px;line-height:1.9;color:var(--ink)}
   .guide div+div{margin-top:24px;padding-top:24px;border-top:1px dashed var(--line)}
 
+  /* far away guests */
+  .far-section{background:var(--bg)}
+  .tabs{display:grid;grid-template-columns:repeat(3,1fr);background:var(--accent-soft);border-radius:12px;padding:4px;gap:4px;margin-bottom:22px}
+  .tab{border:0;background:none;font-family:inherit;font-size:13.5px;padding:11px 0;border-radius:9px;color:var(--sub);cursor:pointer;line-height:1.3}
+  .tab.on{background:var(--paper);color:var(--ink);font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+  .route{display:none;text-align:left}
+  .route.on{display:block}
+  .route-sum{display:flex;align-items:center;justify-content:space-between;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:18px}
+  .route-sum b{font-weight:500;font-size:15px}
+  .route-sum span{font-size:13px;color:var(--sub)}
+  .route-sum em{font-style:normal;color:var(--accent);font-weight:500;font-size:15px}
+  .steps{list-style:none;position:relative;padding-left:0}
+  .steps li{position:relative;padding:0 0 22px 44px;font-size:14.5px;line-height:1.75}
+  .steps li:last-child{padding-bottom:0}
+  .steps li::before{content:"";position:absolute;left:13px;top:28px;bottom:2px;width:2px;background:var(--line)}
+  .steps li:last-child::before{display:none}
+  .steps .num{position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-size:13px;font-weight:500;display:flex;align-items:center;justify-content:center}
+  .steps .num.end{background:var(--ink)}
+  .steps small{display:block;font-size:13px;color:var(--sub);line-height:1.6}
+  .line{display:inline-block;font-size:12px;font-weight:500;color:#fff;border-radius:999px;padding:1px 9px;margin-right:4px;vertical-align:1px}
+  .l1{background:#0052A4}
+  .bus-info{background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .bus-row{display:flex;padding:14px 18px;font-size:14.5px;line-height:1.6}
+  .bus-row + .bus-row{border-top:1px solid var(--line)}
+  .bus-row dt{width:76px;flex-shrink:0;color:var(--accent);font-weight:500;font-size:13.5px;padding-top:1px}
+  .bus-row dd{margin:0}
+  .tbd{color:#b4a79b}
+  .far-note{font-size:12.5px;color:var(--sub);margin-top:16px;line-height:1.7;text-align:left}
+
+  .mini-map-box{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 10px 10px;margin-bottom:22px}
+  .mini-map{width:100%;height:auto;display:block;font-family:'Noto Sans KR',sans-serif}
+  .map-legend{display:flex;justify-content:flex-end;gap:12px;font-size:11.5px;color:var(--sub);margin-top:2px;padding-right:6px}
+  .map-legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:-1px;box-sizing:border-box}
   /* accounts */
   .acc-intro{font-size:14.5px;color:var(--sub);margin-bottom:28px}
   .acc{border:1px solid var(--line);border-radius:12px;background:var(--paper);margin-bottom:12px;overflow:hidden;text-align:left}
@@ -285,6 +318,52 @@
     </div>
   </section>
 
+  <!-- 5-1. 지방에서 오시는 길 -->
+  <section class="far-section fade">
+    <div class="eng">For Our Guests</div>
+    <h2>멀리서 오시는 길</h2>
+    <div class="tabs" role="tablist">
+      <button class="tab on" role="tab" data-t="r-seoul">서울역에서</button>
+      <button class="tab" role="tab" data-t="r-yongsan">용산역에서</button>
+      <button class="tab" role="tab" data-t="r-bus">울산 대절버스</button>
+    </div>
+
+    <div class="route on" id="r-seoul">
+      <div class="route-sum"><div><b>서울역 → 신도림역</b><br><span>환승 없이 1호선 한 번</span></div><em>약 20분</em></div>
+      <div class="mini-map-box"><svg class="mini-map" viewBox="0 0 340 86" role="img" aria-label="서울역에서 신도림까지 1호선 노선도"><line x1="22" y1="34" x2="316" y2="34" stroke="#0052A4" stroke-width="5" stroke-linecap="round"/><circle cx="22" cy="34" r="9" fill="#fff" stroke="#0052A4" stroke-width="3"/><circle cx="22" cy="34" r="4" fill="#0052A4"/><text x="22" y="17" text-anchor="middle" font-size="10.5" fill="#0052A4" font-weight="500">출발</text><text x="22" y="64" text-anchor="middle" font-size="12.5" fill="#3d3530" font-weight="500">서울역</text><circle cx="64" cy="34" r="5" fill="#fff" stroke="#0052A4" stroke-width="2.5"/><text x="64" y="64" text-anchor="middle" font-size="11.5" fill="#6f645c" font-weight="400">남영</text><circle cx="106" cy="34" r="5" fill="#fff" stroke="#0052A4" stroke-width="2.5"/><text x="106" y="64" text-anchor="middle" font-size="11.5" fill="#6f645c" font-weight="400">용산</text><circle cx="148" cy="34" r="5" fill="#fff" stroke="#0052A4" stroke-width="2.5"/><text x="148" y="64" text-anchor="middle" font-size="11.5" fill="#6f645c" font-weight="400">노량진</text><circle cx="190" cy="34" r="5" fill="#fff" stroke="#0052A4" stroke-width="2.5"/><text x="190" y="64" text-anchor="middle" font-size="11.5" fill="#6f645c" font-weight="400">대방</text><circle cx="232" cy="34" r="5" fill="#fff" stroke="#0052A4" stroke-width="2.5"/><text x="232" y="64" text-anchor="middle" font-size="11.5" fill="#6f645c" font-weight="400">신길</text><circle cx="274" cy="34" r="5" fill="#fff" stroke="#0052A4" stroke-width="2.5"/><text x="274" y="64" text-anchor="middle" font-size="11.5" fill="#6f645c" font-weight="400">영등포</text><circle cx="316" cy="34" r="11" fill="#fff" stroke="#00A84D" stroke-width="3"/><circle cx="316" cy="34" r="6.5" fill="#0052A4"/><text x="316" y="16" text-anchor="middle" font-size="10.5" fill="#a07c62" font-weight="500">도착</text><text x="316" y="64" text-anchor="middle" font-size="12.5" fill="#3d3530" font-weight="500">신도림</text></svg><div class="map-legend"><span><i style="background:#0052A4"></i>1호선</span><span><i style="background:#fff;border:2.5px solid #00A84D"></i>2호선 환승역</span></div></div>
+      <ol class="steps">
+        <li><span class="num">1</span>서울역 지하 <span class="line l1">1호선</span> 승강장으로 이동<small>KTX 하차 후 '지하철 1호선' 표지판을 따라오세요.</small></li>
+        <li><span class="num">2</span><b style="font-weight:500">인천·천안·신창 방면</b> 열차 탑승<small>남영 · 용산 · 노량진 · 대방 · 신길 · 영등포 지나 7번째 역</small></li>
+        <li><span class="num">3</span><b style="font-weight:500">신도림역</b> 하차 → 2번 출구 방향<small>테크노마트 판매동 지하 1층과 바로 연결돼요.</small></li>
+        <li><span class="num end">✓</span>엘리베이터로 <b style="font-weight:500">7층 웨스턴베니비스</b><small>다이너스티홀</small></li>
+      </ol>
+      <p class="far-note">열차 운행 상황에 따라 소요 시간은 달라질 수 있어요.</p>
+    </div>
+
+    <div class="route" id="r-yongsan">
+      <div class="route-sum"><div><b>용산역 → 신도림역</b><br><span>환승 없이 1호선 한 번</span></div><em>약 15분</em></div>
+      <div class="mini-map-box"><svg class="mini-map" viewBox="0 0 340 86" role="img" aria-label="용산에서 신도림까지 1호선 노선도"><line x1="22" y1="34" x2="106" y2="34" stroke="#c9d6e8" stroke-width="5" stroke-linecap="round"/><line x1="106" y1="34" x2="316" y2="34" stroke="#0052A4" stroke-width="5" stroke-linecap="round"/><circle cx="22" cy="34" r="5" fill="#fff" stroke="#c9d6e8" stroke-width="2.5"/><text x="22" y="64" text-anchor="middle" font-size="11.5" fill="#b4a79b" font-weight="400">서울역</text><circle cx="64" cy="34" r="5" fill="#fff" stroke="#c9d6e8" stroke-width="2.5"/><text x="64" y="64" text-anchor="middle" font-size="11.5" fill="#b4a79b" font-weight="400">남영</text><circle cx="106" cy="34" r="9" fill="#fff" stroke="#0052A4" stroke-width="3"/><circle cx="106" cy="34" r="4" fill="#0052A4"/><text x="106" y="17" text-anchor="middle" font-size="10.5" fill="#0052A4" font-weight="500">출발</text><text x="106" y="64" text-anchor="middle" font-size="12.5" fill="#3d3530" font-weight="500">용산</text><circle cx="148" cy="34" r="5" fill="#fff" stroke="#0052A4" stroke-width="2.5"/><text x="148" y="64" text-anchor="middle" font-size="11.5" fill="#6f645c" font-weight="400">노량진</text><circle cx="190" cy="34" r="5" fill="#fff" stroke="#0052A4" stroke-width="2.5"/><text x="190" y="64" text-anchor="middle" font-size="11.5" fill="#6f645c" font-weight="400">대방</text><circle cx="232" cy="34" r="5" fill="#fff" stroke="#0052A4" stroke-width="2.5"/><text x="232" y="64" text-anchor="middle" font-size="11.5" fill="#6f645c" font-weight="400">신길</text><circle cx="274" cy="34" r="5" fill="#fff" stroke="#0052A4" stroke-width="2.5"/><text x="274" y="64" text-anchor="middle" font-size="11.5" fill="#6f645c" font-weight="400">영등포</text><circle cx="316" cy="34" r="11" fill="#fff" stroke="#00A84D" stroke-width="3"/><circle cx="316" cy="34" r="6.5" fill="#0052A4"/><text x="316" y="16" text-anchor="middle" font-size="10.5" fill="#a07c62" font-weight="500">도착</text><text x="316" y="64" text-anchor="middle" font-size="12.5" fill="#3d3530" font-weight="500">신도림</text></svg><div class="map-legend"><span><i style="background:#0052A4"></i>1호선</span><span><i style="background:#fff;border:2.5px solid #00A84D"></i>2호선 환승역</span></div></div>
+      <ol class="steps">
+        <li><span class="num">1</span>용산역 <span class="line l1">1호선</span> 승강장으로 이동<small>KTX·ITX 하차 후 '수도권 전철 1호선' 표지판을 따라오세요.</small></li>
+        <li><span class="num">2</span><b style="font-weight:500">인천·천안·신창 방면</b> 열차 탑승<small>노량진 · 대방 · 신길 · 영등포 지나 5번째 역</small></li>
+        <li><span class="num">3</span><b style="font-weight:500">신도림역</b> 하차 → 2번 출구 방향<small>테크노마트 판매동 지하 1층과 바로 연결돼요.</small></li>
+        <li><span class="num end">✓</span>엘리베이터로 <b style="font-weight:500">7층 웨스턴베니비스</b><small>다이너스티홀</small></li>
+      </ol>
+      <p class="far-note">열차 운행 상황에 따라 소요 시간은 달라질 수 있어요.</p>
+    </div>
+
+    <div class="route" id="r-bus">
+      <div class="route-sum"><div><b>울산 → 웨스턴베니비스</b><br><span>신랑측 하객 전용 대절버스</span></div><em>왕복 운행</em></div>
+      <dl class="bus-info">
+        <div class="bus-row"><dt>출발</dt><dd>5월 30일(일) <b style="font-weight:500">오전 8시 30분</b><br><span class="tbd">[출발 장소]</span></dd></div>
+        <div class="bus-row"><dt>도착</dt><dd><b style="font-weight:500">오후 1시 30분 전후</b><br>신도림테크노마트 <span class="tbd">[하차 위치]</span><br><small style="color:var(--sub);font-size:13px">하차 후 엘리베이터로 7층 웨스턴베니비스</small></dd></div>
+        <div class="bus-row"><dt>귀가</dt><dd><b style="font-weight:500">오후 5시</b> 출발 · 하차한 곳에서 다시 탑승<br><small style="color:var(--sub);font-size:13px">혼주와 함께 울산으로 돌아갑니다</small></dd></div>
+        <div class="bus-row"><dt>문의</dt><dd>혼주 하석윤 <a href="tel:01055724754" style="color:var(--accent)">010-5572-4754</a><br>신랑 하명수 <a href="tel:01074178570" style="color:var(--accent)">010-7417-8570</a></dd></div>
+      </dl>
+      <p class="far-note">탑승 인원 확인을 위해 이용하실 분은 미리 연락 부탁드립니다.</p>
+    </div>
+  </section>
+
   <!-- 6. 마음 전하실 곳 -->
   <section class="fade">
     <div class="eng">Account</div>
@@ -355,7 +434,7 @@
     shareImage: 'https://gogo1595959.github.io/wedding/thumbnail.jpg',      // 카톡 공유 썸네일 전체 주소 (예: https://아이디.github.io/저장소/thumbnail.jpg)
     accounts: {
       groom: [
-        { who:'신랑 하명수', bank:'○○은행', num:'000-0000-0000-00', kakaopay:'' },
+        { who:'신랑 하명수', bank:'카카오뱅크', num:'3333-02-9808877', kakaopay:'' },
         { who:'아버지 하석윤', bank:'○○은행', num:'000-000000-00000', kakaopay:'' },
         { who:'어머니 김정순', bank:'○○은행', num:'000-00-000000', kakaopay:'' },
       ],
@@ -402,6 +481,12 @@
       + '&details='+encodeURIComponent('모바일 청첩장: '+location.href.split('#')[0]);
     document.getElementById('gcalBtn').href = url;
   })();
+
+  // 멀리서 오시는 길 탭
+  document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===b));
+    document.querySelectorAll('.route').forEach(r=>r.classList.toggle('on',r.id===b.dataset.t));
+  });
 
   // 배경음악
   (function(){
