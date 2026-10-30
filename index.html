@@ -109,6 +109,7 @@
   .map-links{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line);margin:0 -28px}
   .map-links a{padding:15px 0;font-size:13px;color:var(--ink);text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px}
   .map-links a+a{border-left:1px solid var(--line)}
+  .map-ico{width:20px;height:20px;border-radius:5px;object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
   .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
   .guide{text-align:left;margin-top:34px}
   .guide h3{font-size:14.5px;font-weight:500;margin-bottom:8px;color:var(--accent)}
@@ -269,9 +270,9 @@
     <button class="btn" style="margin-top:14px" onclick="copyText('서울특별시 구로구 새말로 97 신도림테크노마트 7층','주소가 복사되었습니다')">주소 복사</button>
     <a class="map-ph" id="map" href="https://map.kakao.com/?q=%EC%9B%A8%EC%8A%A4%ED%84%B4%EB%B2%A0%EB%8B%88%EB%B9%84%EC%8A%A4%20%EC%8B%A0%EB%8F%84%EB%A6%BC" target="_blank" rel="noopener"><span id="mapMsg">GitHub Pages에 올리고 카카오 키를 넣으면 실제 지도가 나와요</span></a>
     <div class="map-links">
-      <a href="https://map.naver.com/p/search/%EC%9B%A8%EC%8A%A4%ED%84%B4%EB%B2%A0%EB%8B%88%EB%B9%84%EC%8A%A4%20%EC%8B%A0%EB%8F%84%EB%A6%BC" target="_blank" rel="noopener"><i class="dot" style="background:#03c75a"></i>네이버지도</a>
-      <a href="https://map.kakao.com/?q=%EC%9B%A8%EC%8A%A4%ED%84%B4%EB%B2%A0%EB%8B%88%EB%B9%84%EC%8A%A4%20%EC%8B%A0%EB%8F%84%EB%A6%BC" target="_blank" rel="noopener"><i class="dot" style="background:#fee500;border:1px solid #e5cf00"></i>카카오맵</a>
-      <a href="tmap://search?name=%EC%9B%A8%EC%8A%A4%ED%84%B4%EB%B2%A0%EB%8B%88%EB%B9%84%EC%8A%A4%EC%8B%A0%EB%8F%84%EB%A6%BC" target="_blank" rel="noopener"><i class="dot" style="background:#3d6dfa"></i>티맵</a>
+      <a href="https://map.naver.com/p/search/%EC%9B%A8%EC%8A%A4%ED%84%B4%EB%B2%A0%EB%8B%88%EB%B9%84%EC%8A%A4%20%EC%8B%A0%EB%8F%84%EB%A6%BC" target="_blank" rel="noopener"><img class="map-ico" src="img/naver.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('i'),{className:'dot',style:'background:#03c75a'}))">네이버지도</a>
+      <a href="https://map.kakao.com/?q=%EC%9B%A8%EC%8A%A4%ED%84%B4%EB%B2%A0%EB%8B%88%EB%B9%84%EC%8A%A4%20%EC%8B%A0%EB%8F%84%EB%A6%BC" target="_blank" rel="noopener"><img class="map-ico" src="img/kakao.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('i'),{className:'dot',style:'background:#fee500;border:1px solid #e5cf00'}))">카카오맵</a>
+      <a href="tmap://search?name=%EC%9B%A8%EC%8A%A4%ED%84%B4%EB%B2%A0%EB%8B%88%EB%B9%84%EC%8A%A4%EC%8B%A0%EB%8F%84%EB%A6%BC" target="_blank" rel="noopener"><img class="map-ico" src="img/tmap.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('i'),{className:'dot',style:'background:#3d6dfa'}))">티맵</a>
     </div>
     <div class="guide">
       <div>
@@ -448,7 +449,8 @@
         el.removeAttribute('href'); el.classList.add('loaded');
         const pos=new kakao.maps.LatLng(res[0].y,res[0].x);
         const map=new kakao.maps.Map(el,{center:pos,level:3});
-        map.setZoomable(false); // 페이지 스크롤 중 지도 확대 방지
+        map.setZoomable(true); // 두 손가락(핀치)·마우스 휠로 확대/축소
+        map.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.RIGHT); // +/- 버튼
         new kakao.maps.Marker({position:pos,map});
         new kakao.maps.CustomOverlay({position:pos,map,yAnchor:1,content:'<div class="map-label">웨스턴베니비스 신도림</div>'});
       });
@@ -476,7 +478,7 @@
     s.onload=run; s.onerror=()=>toast('카카오 공유를 불러오지 못했어요. 링크 복사를 이용해 주세요');
     document.head.appendChild(s);
   }
-  const GALLERY = ['img/1.jpg','img/2.jpg','img/3.jpg']; // 사진 추가 시 여기에 파일명 추가
+  const GALLERY = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg','img/6.jpg','img/7.jpg','img/8.jpg','img/9.jpg']; // 사진 추가 시 여기에 파일명 추가
 
   // 달력
   (function(){
